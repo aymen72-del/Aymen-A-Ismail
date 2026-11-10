@@ -106,6 +106,12 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 .ent{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;min-width:30px;height:30px;padding:0 4px;border-radius:8px;background:var(--ec);color:#fff;font:700 11px/1 var(--f-display);letter-spacing:.02em;border:2px solid var(--ec)}
 .ent.consult{background:var(--surface);color:var(--ec)}
 .ent.lg.ic{flex-direction:column;gap:1px;font-size:8.5px;letter-spacing:.04em;min-width:52px;height:52px}
+.logo{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.logo img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.logo.lg{width:96px;height:60px;padding:5px}
+.logo.sm{height:30px;width:66px;padding:2px 4px;border-radius:5px}
+.logo.dark{border-color:transparent}
+.org .logo{grid-row:span 2}
 .ent svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ent.intl{border-radius:50%}
 .ent.sm{min-width:30px;height:20px;font-size:9.5px;border-radius:5px;border-width:1.5px;padding:0 4px}
@@ -251,7 +257,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
     <div class="org-group">
       <div class="eyebrow">Employers</div><div class="orgs" id="org-emp"></div>
       <div class="eyebrow" style="margin-top:8px">Clients &amp; partners</div><div class="orgs" id="org-cli"></div>
-      <div class="org-legend"><span><span class="ent"></span> Government &amp; authority</span><span><span class="ent consult"></span> Consultancy &amp; company</span><span><span class="ent intl"></span> International organisation</span><span>Colour shows the country.</span></div>
+      <div class="org-legend"><span><span class="ent"></span> Government &amp; authority</span><span><span class="ent consult"></span> Consultancy &amp; company</span><span><span class="ent intl"></span> International organisation</span><span>Colour shows the country. Organisation logos are shown where available.</span></div>
     </div>
   </section>
 
@@ -455,8 +461,9 @@ const ICON={
  beam:'<path d="M3 6h18M3 9h18M12 9v8M6 20h12M8 17h8"/>',
  bridge:'<path d="M2 16h20M4 16v5M20 16v5M4 16c3-7 13-7 16 0M9 12v4M15 12v4M12 11v5"/>'};
 const ENT_ICON={dah:'plan',pwa:'cone',arc:'ruler',ncg:'network',ecs:'hardhat',bi:'beam',rrm:'city',rcrc:'civic',loc:'trophy',sa:'energy',mep:'town',rcjy:'industry',sbg:'crane',ntsc:'shield',who:'health',wb:'globe',lbg:'compass',nha:'road',mpwh:'bridge'};
+const LOGO={dah:1,rcrc:1,rrm:1,loc:'#0d262d',sa:1,who:1,wb:1,pwa:1,rcjy:1,mep:1,lbg:1,nha:1,ncg:'#05003b',ntsc:1};
 const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
-const badge=(e,cls='')=>{const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
+const badge=(e,cls='')=>{if(LOGO[e.id]){const size=cls.includes('lg')?'lg':'sm';const bgc=typeof LOGO[e.id]==='string'?LOGO[e.id]:null;return el('span',{className:`logo ${size}${bgc?' dark':''}`,style:bgc?{background:bgc}:{},title:e.name},el('img',{src:`img/logo-${e.id}.png`,alt:e.name,loading:'lazy'}));}const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
 const state={domain:null,country:'',q:'',ent:null};
 DOMAINS.forEach(d=>{
