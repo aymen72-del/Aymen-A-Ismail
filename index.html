@@ -447,8 +447,14 @@ const ICON={
  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
  compass:'<circle cx="12" cy="5" r="1.6"/><path d="M12 6.6L6 21M12 6.6L18 21M8.2 15.5h7.6"/>',
  road:'<path d="M8 3L4 21M16 3l4 18M12 4v3M12 10v3M12 16v4"/>',
+ cone:'<path d="M10 4h4l5 15H5zM8 11h8M6.5 15h11M3 21h18"/>',
+ hardhat:'<path d="M4 17a8 8 0 0 1 16 0zM2 17h20v3H2zM10 9V6h4v3"/>',
+ plan:'<path d="M4 4h16v16H4zM4 9h16M9 9v11M13 13h4M13 16h4"/>',
+ ruler:'<path d="M3 17L17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/>',
+ network:'<circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 11l10-5M7 13l10 5"/>',
+ beam:'<path d="M3 6h18M3 9h18M12 9v8M6 20h12M8 17h8"/>',
  bridge:'<path d="M2 16h20M4 16v5M20 16v5M4 16c3-7 13-7 16 0M9 12v4M15 12v4M12 11v5"/>'};
-const ENT_ICON={rrm:'city',rcrc:'civic',loc:'trophy',sa:'energy',mep:'town',rcjy:'industry',sbg:'crane',ntsc:'shield',who:'health',wb:'globe',lbg:'compass',nha:'road',mpwh:'bridge'};
+const ENT_ICON={dah:'plan',pwa:'cone',arc:'ruler',ncg:'network',ecs:'hardhat',bi:'beam',rrm:'city',rcrc:'civic',loc:'trophy',sa:'energy',mep:'town',rcjy:'industry',sbg:'crane',ntsc:'shield',who:'health',wb:'globe',lbg:'compass',nha:'road',mpwh:'bridge'};
 const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
 const badge=(e,cls='')=>{const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
