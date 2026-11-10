@@ -13,7 +13,7 @@
 :root{
   --bg:#eff2ef; --surface:#ffffff; --sunken:#e5eae6; --ink:#14211b; --muted:#56655d; --line:#d3dbd5;
   --sign:#0d6b45; --sign-ink:#ffffff; --marking:#d99a0b;
-  --d-safety:#1d7a4c; --d-crash:#2361a8; --d-invest:#b1373b; --d-traffic:#c58210; --d-planning:#6a4ea6; --d-workzone:#c4561b; --d-strategy:#0d7a86; --d-infra:#7b6a35;
+  --d-safety:#1d7a4c; --d-crash:#2361a8; --d-invest:#b1373b; --d-traffic:#c58210; --d-planning:#6a4ea6; --d-workzone:#c4561b; --d-strategy:#0d7a86; --d-infra:#7b6a35; --d-events:#4f5fc4; --d-data:#a8328f;
   --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
   --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -22,11 +22,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0d1411; --surface:#151f1a; --sunken:#1b2721; --ink:#e4ebe6; --muted:#9aaba1; --line:#2a3832;
   --sign:#127a50; --sign-ink:#ffffff; --marking:#f0b73a;
-  --d-safety:#4cc085; --d-crash:#6aa3e6; --d-invest:#ec7377; --d-traffic:#eab14a; --d-planning:#a990e3; --d-workzone:#f08a52; --d-strategy:#45bfcb; --d-infra:#c4b27a; color-scheme:dark}}
+  --d-safety:#4cc085; --d-crash:#6aa3e6; --d-invest:#ec7377; --d-traffic:#eab14a; --d-planning:#a990e3; --d-workzone:#f08a52; --d-strategy:#45bfcb; --d-infra:#c4b27a; --d-events:#98a6f2; --d-data:#ea7ccf; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0d1411; --surface:#151f1a; --sunken:#1b2721; --ink:#e4ebe6; --muted:#9aaba1; --line:#2a3832;
   --sign:#127a50; --sign-ink:#ffffff; --marking:#f0b73a;
-  --d-safety:#4cc085; --d-crash:#6aa3e6; --d-invest:#ec7377; --d-traffic:#eab14a; --d-planning:#a990e3; --d-workzone:#f08a52; --d-strategy:#45bfcb; --d-infra:#c4b27a; color-scheme:dark}
+  --d-safety:#4cc085; --d-crash:#6aa3e6; --d-invest:#ec7377; --d-traffic:#eab14a; --d-planning:#a990e3; --d-workzone:#f08a52; --d-strategy:#45bfcb; --d-infra:#c4b27a; --d-events:#98a6f2; --d-data:#ea7ccf; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
@@ -178,7 +178,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
         <span id="c-phone">+966 59 663 0202 <button class="copy" data-copy="+966596630202">Copy</button></span>
       </div>
     </div>
-    <p class="lede">Over 25 years across Saudi Arabia, Qatar, Sudan and the USA in road safety strategy, crash data systems and network safety performance. Led the Qatar Crash Analysis System (Q‑CAS) and iRAP programme, coordinated Qatar's National Road Safety Action Plans, and now leads traffic and safety work for Riyadh's road network.</p>
+    <p class="lede">Over 25 years across Saudi Arabia, Qatar, Sudan and the USA in road safety strategy, crash data systems and network safety performance. Led the Qatar Crash Analysis System (Q‑CAS) and iRAP programme, coordinated Qatar's National Road Safety Action Plans, and now leads traffic and safety work for Riyadh's road network, including readiness for the AFC Asian Cup 2027 and FIFA World Cup 2034. Applies machine learning and AI to crash data, from RapidMiner models to AI-built dashboards.</p>
     <div class="creds">
       <span class="cred">MSc Transportation Engineering<small>George Mason University, 2007</small></span>
       <span class="cred">BSc (Hons)<small>Sudan University of Science &amp; Technology, 1999</small></span>
@@ -190,7 +190,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
     <div class="kpi"><b>25<em>+</em></b><span>years of practice since 1999</span></div>
     <div class="kpi"><b id="k-countries">—</b><span>countries in the project portfolio</span></div>
     <div class="kpi"><b id="k-projects">—</b><span>featured projects documented</span></div>
-    <div class="kpi"><b id="k-domains">8</b><span>areas of expertise</span></div>
+    <div class="kpi"><b id="k-domains">10</b><span>areas of expertise</span></div>
     <div class="kpi"><b>2,700<em>+</em></b><span>km of community access roads, Sudan</span></div>
   </section>
 
@@ -257,7 +257,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
     </div>
   </section>
 
-  <footer>Built from Aymen A. Makki Ismail's CV and project portfolio (79 pages). Project posters are reproduced from the portfolio. Applies international practice from iRAP, PIARC, WHO and FHWA.</footer>
+  <footer>Built from Aymen A. Makki Ismail's CV and project portfolio. Project posters are reproduced from the portfolio. Applies international practice from iRAP, PIARC, WHO and FHWA.</footer>
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lb-title">
@@ -279,25 +279,30 @@ const DOMAINS=[
  {id:'planning',name:'Transport Planning & Modelling',desc:'Master plans, demand models and surveys that shape long-term networks.',skills:['Travel demand modelling (VISUM, TransCAD)','Microsimulation (VISSIM)','National O‑D & traffic count programmes','Event mobility & stadium accessibility']},
  {id:'workzone',name:'Work Zones & Traffic Management',desc:'Keeping traffic moving and workers safe through construction.',skills:['Traffic diversion plan (TDP) review','Work zone traffic management guidelines (WZTMG)','Traffic management plans','Work zone crash analysis']},
  {id:'strategy',name:'Strategy, Policy & Programme Management',desc:'National action plans, multi-agency coordination and programme delivery.',skills:['National Road Safety Action Plans 2018–2022, 2023–2030','Led 20+ action coordinators; NTSC liaison','WHO reporting & international benchmarking','Project management of multi-year consultancies']},
+ {id:'events',name:'Mega-Event Mobility & Readiness',desc:'Getting crowds to stadiums safely, from FIFA 2022 in Qatar to Riyadh\'s Asian Cup and World Cup.',skills:['FIFA World Cup 2022 road safety operations (Qatar)','AFC Asian Cup 2027 host-city readiness, Riyadh','1 km stadium impact zones & priority street scoring','Spectator last-mile audits & crowd arrival planning']},
+ {id:'data',name:'Data Science, Machine Learning & AI',desc:'Models and AI tools that turn thousands of crash records into decisions.',skills:['RapidMiner workflows: weeks of processing cut to days','Crash severity & collision type prediction','Crash prediction from crash history + satellite imagery','AI-assisted analysis and published dashboards (Claude)']},
  {id:'infra',name:'Infrastructure Development & Appraisal',desc:'Donor-funded road programmes and the economics behind them.',skills:['World Bank multi-donor trust fund projects','Rural access & feeder road programmes','Economic appraisal & life-cycle cost (HDM‑4)','Corridor upgrade studies']}
 ];
 const COUNTRY={KSA:'Saudi Arabia',QAT:'Qatar',SDN:'Sudan',YEM:'Yemen',USA:'USA'};
 // Featured projects from the portfolio (poster page numbers in the CV PDF).
 const P=[
- {t:'Qatar Traffic Crash Dashboard, 2015–2024',c:'Ashghal (Public Works Authority)',co:'QAT',y:'2024',d:['crash','strategy'],p:[19],s:'Nine-year national dashboard of crash volumes, severity, fatality rates and crash types.'},
+ {t:'Qatar Traffic Crash Dashboard, 2015–2024',c:'Ashghal (Public Works Authority)',co:'QAT',y:'2024',d:['crash','data','strategy'],p:[19],s:'Nine-year national dashboard of crash volumes, severity, fatality rates and crash types.'},
  {t:'Accident Reconstruction & Crash Simulation: SUV Rollover, Salwa Road',c:'Ashghal',co:'QAT',y:'',d:['invest','safety'],p:[20],s:'Photogrammetry and PC‑Crash simulation of a rollover to establish speed and sequence.'},
  {t:'Blackspot Treatment Program in Qatar',c:'Ashghal',co:'QAT',y:'2020',d:['crash','safety'],p:[21],s:'Engineering interventions at blackspots for safer roads and reduced crash risk.'},
  {t:'Documenting Road Safety Efforts in Qatar',c:'Ashghal · WHO reporting',co:'QAT',y:'2020',d:['strategy','crash'],p:[22],s:'Fatal crash and fatality trends 1992–2023; fatalities down about 36% from the 2006 peak.'},
  {t:'Rural Road Safety Improvement Program',c:'Ashghal, Roads O&M',co:'QAT',y:'2017–2024',d:['crash','safety','strategy'],p:[23,24,49],s:'Crash-based screening and ranking of 31 rural road sections with 5 years of data, and selection criteria without AADT.'},
  {t:'Crash Data Quality & Analysis Fact Sheets Library',c:'Ashghal',co:'QAT',y:'',d:['crash'],p:[25],s:'Fact sheets supporting accurate crash data collection, coding and analysis.'},
- {t:'Riyadh Traffic Crash Analysis Platform',c:'Riyadh Region Municipality',co:'KSA',y:'2022–2023',d:['crash'],p:[26],s:'GIS platform analysing crashes across Riyadh to support road safety decisions.'},
- {t:'Riyadh Blackspot Analysis: Severity-Weighted Clustering (80 m)',c:'Riyadh Region Municipality',co:'KSA',y:'2022–2023',d:['crash','safety'],p:[27,28],s:'Spatial clustering of crashes, weighted by severity, to rank blackspots city-wide.'},
+ {t:'Riyadh Traffic Crash Analysis Platform',c:'Riyadh Region Municipality',co:'KSA',y:'2022–2023',d:['crash','data'],p:[26],s:'GIS platform analysing crashes across Riyadh to support road safety decisions.'},
+ {t:'Riyadh Blackspot Analysis: Severity-Weighted Clustering (80 m)',c:'Riyadh Region Municipality',co:'KSA',y:'2022–2023',d:['crash','data','safety'],p:[27,28],s:'Spatial clustering of crashes, weighted by severity, to rank blackspots city-wide.'},
  {t:'Traffic Safety & Operational Efficiency Studies Dashboard',c:'Riyadh Region Municipality · Roads Quality Programme',co:'KSA',y:'',d:['strategy','crash'],p:[29],s:'Monitoring board tracking safety studies from study to delivery.'},
  {t:'Ranking Riyadh Intersections by Crash Record',c:'Riyadh Region Municipality',co:'KSA',y:'2026',d:['crash','safety'],p:[30],s:'Scientific prioritisation of intersections for safety upgrades, following the PIARC Road Safety Manual.'},
  {t:'Pavement Marking Proposals for Residential Streets (≤20 m)',c:'Riyadh Region Municipality · Dar Al‑Handasah',co:'KSA',y:'',d:['traffic','safety'],p:[31],s:'Design proposals for markings on narrow residential streets.'},
  {t:'Pedestrian Crossings at Mosques & Schools',c:'Riyadh Region Municipality',co:'KSA',y:'2026',d:['safety'],p:[32,33],s:'Crossing locations and safety assessments around protected pedestrian generators.'},
- {t:'Riyadh Ready for FIFA World Cup 2030',c:'Riyadh Region Municipality',co:'KSA',y:'',d:['planning','traffic'],p:[34],s:'Host stadium distribution, transport and accessibility analysis, and a roadmap to 2030.'},
- {t:'Riyadh Readiness for AFC Asian Cup 2027',c:'Riyadh Region Municipality',co:'KSA',y:'',d:['planning','traffic','safety'],p:[35,36],s:'Existing conditions around 5 stadiums: 120+ streets and 350+ field observations.'},
+ {t:'Riyadh Ready for the FIFA World Cup: Stadium Accessibility',c:'Riyadh Region Municipality',co:'KSA',y:'',d:['events','planning','traffic'],p:[34],s:'Host stadium distribution, transport and accessibility analysis, and a roadmap to 2030.'},
+ {t:'Riyadh Readiness for AFC Asian Cup 2027',c:'Riyadh Region Municipality',co:'KSA',y:'',d:['events','planning','traffic','safety'],p:[35,36],s:'Existing conditions around 5 stadiums: 120+ streets and 350+ field observations.'},
+ {t:'AFC Asian Cup 2027: Priority Street Assessment Around Host Stadiums',c:'Riyadh Region Municipality',co:'KSA',y:'2026',d:['events','safety','traffic'],p:[81],s:'13 priority streets around Kingdom Arena and King Saud University scored on four criteria; pedestrian safety weakest at 38%.'},
+ {t:'Riyadh Host City Operational Readiness: Asian Cup 2027 to World Cup 2034',c:'Local Organising Committee, Riyadh City track · Riyadh Region Municipality',co:'KSA',y:'2026',d:['events','planning','strategy'],p:[82],s:'Last-mile audits at 5 stadiums, spectator arrival flows, 7,000 m HVM barriers and the road to FIFA World Cup 2034.'},
+ {t:'From Crash Records to Predicted Risk: Machine Learning & AI',c:'Ashghal (Qatar) · Riyadh Region Municipality',co:'KSA',y:'2017–2026',d:['data','crash'],p:[80],s:'RapidMiner models in Qatar (weeks to days), crash prediction with satellite imagery in Riyadh, and AI-built dashboards.'},
  {t:'Khuzam Road Safety & Operational Upgrade',c:'Riyadh Region Municipality',co:'KSA',y:'2026',d:['safety','traffic'],p:[37],s:'Crash mapping and operational improvements along a Riyadh arterial.'},
  {t:'Safety Upgrade Works: From Risk Analysis to Field Delivery',c:'Riyadh Region Municipality',co:'KSA',y:'',d:['safety','strategy'],p:[38],s:'Before-and-after documentation of implemented safety works.'},
  {t:'Renewing Pavement Markings on Riyadh Streets',c:'Riyadh Region Municipality · Dar Al‑Handasah',co:'KSA',y:'',d:['traffic','safety'],p:[39],s:'Renewal programme for clearer, safer and more durable markings.'},
@@ -341,17 +346,20 @@ const MILESTONES=[{y:1999.5,l:'BSc (Hons)'},{y:2007.4,l:'MSc, George Mason'},{y:
 const HIGHLIGHTS=[
  {d:'crash',t:'Qatar Crash Analysis System & iRAP',p:'Managed Q‑CAS and the iRAP programme, delivering safety assessments and investment plans across the national network.'},
  {d:'strategy',t:'National Road Safety Action Plans',fig:'2018–2022 · 2023–2030',p:'Ashghal coordinator for the plans, leading 20+ action coordinators and acting as main liaison with the National Traffic Safety Committee.'},
- {d:'planning',t:'FIFA World Cup 2022 operations',p:'Supported safe, efficient transport during the tournament through the FIFA 2022 Road Safety Working Group.'},
- {d:'crash',t:'Predictive safety modelling',p:'Applied machine learning and data mining to ambulance and crash data to predict crash severity and collision types.'},
+ {d:'events',t:'FIFA World Cup 2022 operations',p:'Supported safe, efficient transport during the tournament through the FIFA 2022 Road Safety Working Group.'},
+ {d:'data',t:'Predictive safety modelling',fig:'Weeks → days',p:'Built RapidMiner workflows for thousands of ambulance and crash records, predicting crash severity and collision types.'},
  {d:'strategy',t:'WHO road safety collaboration',p:'Represented Ashghal in WHO reporting and benchmarking of Qatar\'s road safety performance.'},
  {d:'traffic',t:'TIS Guidelines, Eastern Province',fig:'40%+ faster reviews',p:'Developed the Traffic Impact Study guidelines adopted by the Municipality, improving consistency in planning reviews.'},
  {d:'safety',t:'Riyadh network safety',p:'Leads safety audits, blackspot and corridor prioritisation, and TDP reviews with Riyadh Amanah and the Royal Commission for Riyadh City.'},
+ {d:'events',t:'Asian Cup 2027 & World Cup 2034 readiness',fig:'5 stadiums · 13 streets scored',p:'Stadium-surround assessments, last-mile audits and host-city requirements for Riyadh\'s Asian Cup, carried forward to the 2034 World Cup.'},
+ {d:'data',t:'Crash prediction with satellite imagery',fig:'In progress',p:'Machine learning on historic crash data and high-resolution satellite imagery to find the variables behind crashes on Riyadh\'s network.'},
+ {d:'data',t:'AI-built road safety dashboards',fig:'28,970 crash records',p:'Uses Claude AI to process data and build and publish dashboards, including the Riyadh Road Safety Observatory.'},
  {d:'infra',t:'World Bank infrastructure programmes',fig:'11+ projects · 2,700+ km',p:'Senior traffic engineer and project manager on multi-donor trust fund roads across Kassala, South Kordofan, Blue Nile and Darfur.'}
 ];
 const COMMITTEES=[
  ['National Road Safety Strategy','Working group member'],['National Road Safety Action Plans','2018–2022 and 2023–2030'],['FIFA 2022 Road Safety Working Group','Safe mobility for a global event'],['National Crash Database Working Group','Crash data integration'],['Work Zone Traffic Management Guidelines','Review committee'],['Traffic Accident Investigation Working Group','Investigation frameworks']
 ];
-const TOOLS=[['Traffic simulation & analysis',['VISSIM','VISUM','TransCAD','Synchro','SIDRA','HCS']],['Road safety & crash analysis',['iMAAP','iRAP','PC‑Crash','PhotoModeler']],['Data analytics & modelling',['RapidMiner','Orange','Power BI']],['GIS, design & assets',['ArcGIS','AutoCAD','MicroStation','Asset management systems']]];
+const TOOLS=[['Traffic simulation & analysis',['VISSIM','VISUM','TransCAD','Synchro','SIDRA','HCS']],['Road safety & crash analysis',['iMAAP','iRAP','PC‑Crash','PhotoModeler']],['Data, ML & AI',['RapidMiner','Orange','Power BI','Claude AI']],['GIS, design & assets',['ArcGIS','AutoCAD','MicroStation','Asset management systems']]];
 const CERTS=[['2017','Post-Crash Investigation, Levels I & II','TRL'],['2015','Work Zone Traffic Analysis & Safety','NHI'],['2015','Safe Use of Law Enforcement in Work Zones','NHI'],['2015','Roadside Design Guide','NHI'],['2015','Transportation Asset Management & Freight Planning','NHI'],['2014–15','Traffic Simulation & Modelling (VISUM / VISSIM)','PTV'],['2013','Highway Safety Manual (HSM)','Saudi Aramco Chair for Safety'],['2011','ISO 9001 Quality Management Systems','Intl. Center for Quality Management'],['2009–10','Project Management & Marketing','Sudanese Dutch Management Center']];
 
 const $=s=>document.querySelector(s);
