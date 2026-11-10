@@ -154,14 +154,19 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 select,input[type=search]{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
 input[type=search]{min-width:0;flex:1 1 220px;max-width:340px}
 .count{font:500 13px var(--f-mono);color:var(--muted);margin-inline-start:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,262px),1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:700px){.grid{grid-template-columns:minmax(0,1fr)}}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-align:left;padding:0;transition:transform .15s ease,box-shadow .15s ease}
 .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px color-mix(in srgb,var(--ink) 12%,transparent)}
 .card .thumb{position:relative;aspect-ratio:792/612;background:var(--sunken);max-width:100%}
 .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .card .pages{position:absolute;right:8px;bottom:8px;background:color-mix(in srgb,var(--ink) 80%,transparent);color:var(--bg);font:500 11px var(--f-mono);padding:2px 7px;border-radius:4px}
 .card .body{padding:11px 13px 13px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card h3{font-size:17px;font-weight:600}
+.card h3{font-size:22px;font-weight:600}
+.card .body{padding:14px 18px 18px;gap:8px}
+.card .meta{font-size:14px}
+.card .tag{font-size:13px}
+.card .logo.sm{height:38px;width:86px}
 .card .meta{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:3px 10px}
 .card .meta b{font:500 11px var(--f-mono);letter-spacing:.06em;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:0 5px}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
@@ -546,7 +551,7 @@ function renderGrid(){
   const g=$('#grid');g.replaceChildren();
   if(!shown.length){g.append(el('div',{className:'empty',style:{gridColumn:'1/-1'}},'No projects match these filters. Clear the search or choose another area.'));return;}
   shown.forEach((p,i)=>g.append(el('button',{className:'card',onclick:()=>openLB(i,0),'aria-label':`Open poster: ${p.t}`},
-    el('div',{className:'thumb'},el('img',{src:img(p.p[0],'t'),alt:'',loading:'lazy',width:560,height:433}),p.p.length>1?el('span',{className:'pages'},`${p.p.length} posters`):null),
+    el('div',{className:'thumb'},el('img',{src:img(p.p[0],'t'),srcset:`${img(p.p[0],'t')} 560w, ${img(p.p[0],'f')} 1700w`,sizes:'(max-width:700px) 100vw, 600px',alt:'',loading:'lazy',width:560,height:433}),p.p.length>1?el('span',{className:'pages'},`${p.p.length} posters`):null),
     el('div',{className:'body'},el('h3',{},p.t),
       (()=>{const es=entsOf(p.c+' '+p.t);return es.length?el('div',{className:'ents'},...es.map(e=>badge(e,'sm'))):null})(),el('div',{className:'meta'},p.co?el('b',{},p.co):null,p.c?el('span',{},p.c):null,p.y?el('span',{},p.y):null),
       el('div',{className:'tags'},p.d.map(id=>el('span',{className:'tag','--c':dc(id)},dom(id).name)))))));
