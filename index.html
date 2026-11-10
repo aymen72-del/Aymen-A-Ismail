@@ -103,6 +103,28 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 .tl-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-top:8px}
 .tl-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 .roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:10px;margin-top:14px}
+.ent{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;min-width:30px;height:30px;padding:0 4px;border-radius:8px;background:var(--ec);color:#fff;font:700 11px/1 var(--f-display);letter-spacing:.02em;border:2px solid var(--ec)}
+.ent.consult{background:var(--surface);color:var(--ec)}
+.ent.intl{border-radius:50%}
+.ent.sm{min-width:30px;height:20px;font-size:9.5px;border-radius:5px;border-width:1.5px;padding:0 4px}
+.ent.sm.intl{border-radius:50%}
+.ent.lg{min-width:48px;height:48px;font-size:13px;border-radius:11px;padding:0 5px}
+.org-line{display:flex;align-items:flex-start;gap:7px}
+.org-line .ent{margin-top:1px}
+.role-card .ent{color:#fff;font-size:9.5px}
+.role-card .ent.consult{color:var(--ec)}
+.orgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,265px),1fr));gap:10px}
+.org{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:3px 11px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;min-width:0}
+.org:hover{border-color:var(--ink)}
+.org:focus-visible{outline:2px solid var(--marking);outline-offset:2px}
+.org .ent{grid-row:span 2}
+.org b{font:600 16px/1.15 var(--f-display)}
+.org span.m{font-size:12.5px;color:var(--muted)}
+.org-group{display:flex;flex-direction:column;gap:8px}
+.org-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);align-items:center}
+.org-legend .ent{min-width:18px;width:18px;height:18px;padding:0;font-size:0;--ec:var(--muted);vertical-align:-4px}
+.ent-filter{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);border-radius:99px;padding:3px 10px 3px 4px;font-size:13px;background:var(--surface);cursor:pointer}
+.card .ents{display:flex;gap:4px}
 .role-card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface);display:grid;grid-template-columns:auto 1fr;gap:2px 10px}
 .role-card .yr{grid-row:span 3;white-space:pre-line;align-self:start;font:500 12px/1.4 var(--f-mono);color:var(--muted);border-right:3px solid var(--c);padding-right:10px;white-space:nowrap}
 .role-card b{font:600 16px/1.2 var(--f-display)}
@@ -219,6 +241,15 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
       <div class="tl-wrap"><svg id="timeline" role="img" aria-label="Career timeline from 1999 to 2026"></svg></div>
       <div class="tl-legend" id="tl-legend"></div>
       <div class="roles" id="roles"></div>
+    </div>
+  </section>
+
+  <section id="organisations">
+    <div class="sec-head"><div><div class="eyebrow">Organisations</div><h2>Employers, clients &amp; partners</h2></div><p>Select an organisation to see the projects done with or for it.</p></div>
+    <div class="org-group">
+      <div class="eyebrow">Employers</div><div class="orgs" id="org-emp"></div>
+      <div class="eyebrow" style="margin-top:8px">Clients &amp; partners</div><div class="orgs" id="org-cli"></div>
+      <div class="org-legend"><span><span class="ent"></span> Government &amp; authority</span><span><span class="ent consult"></span> Consultancy &amp; company</span><span><span class="ent intl"></span> International organisation</span><span>Colour shows the country.</span></div>
     </div>
   </section>
 
@@ -379,7 +410,31 @@ $('#k-projects').textContent=P.length;
 $('#k-countries').textContent=countries.length;
 
 // Expertise cards
-const state={domain:null,country:'',q:''};
+const ENT_COL={KSA:'var(--d-safety)',QAT:'var(--d-invest)',SDN:'var(--d-traffic)',USA:'var(--d-crash)',YEM:'var(--d-planning)',INT:'var(--d-strategy)'};
+const ENT_TYPE={gov:'Government & authority',consult:'Consultancy & company',intl:'International organisation'};
+const ENTS=[
+ {id:'dah',ab:'DAH',name:'Dar Al-Handasah',co:'KSA',ty:'consult',emp:1,m:['Dar Al‑Handasah','Dar Al-Handasah']},
+ {id:'pwa',ab:'PWA',name:'Ashghal – Public Works Authority',co:'QAT',ty:'gov',emp:1,m:['Ashghal']},
+ {id:'arc',ab:'ARC',name:'Al Rabiah Consulting Engineers',co:'KSA',ty:'consult',emp:1,m:['Al Rabiah']},
+ {id:'ncg',ab:'NCG',name:'Newtech Consulting Group',co:'SDN',ty:'consult',emp:1,m:['Newtech']},
+ {id:'ecs',ab:'ECS',name:'Engineering Consulting Services',co:'USA',ty:'consult',emp:1,m:['Engineering Consulting Services']},
+ {id:'bi',ab:'BI',name:'Beta International',co:'SDN',ty:'consult',emp:1,m:['Beta International']},
+ {id:'rrm',ab:'RRM',name:'Riyadh Region Municipality',co:'KSA',ty:'gov',m:['Riyadh Region Municipality']},
+ {id:'rcrc',ab:'RCRC',name:'Royal Commission for Riyadh City',co:'KSA',ty:'gov',m:['RCRC','Royal Commission for Riyadh']},
+ {id:'loc',ab:'LOC',name:'AFC Asian Cup 2027 Local Organising Committee',co:'KSA',ty:'gov',m:['Local Organising Committee']},
+ {id:'sa',ab:'SA',name:'Saudi Aramco',co:'KSA',ty:'consult',m:['Aramco']},
+ {id:'mep',ab:'MEP',name:'Municipality of Eastern Province',co:'KSA',ty:'gov',m:['Eastern Province']},
+ {id:'rcjy',ab:'RCJY',name:'Royal Commission for Jubail & Yanbu',co:'KSA',ty:'gov',m:['Jubail']},
+ {id:'sbg',ab:'SBG',name:'Saudi Binladin Group',co:'KSA',ty:'consult',m:['Binladin']},
+ {id:'ntsc',ab:'NTSC',name:'National Traffic Safety Committee',co:'QAT',ty:'gov',m:['NTSC']},
+ {id:'who',ab:'WHO',name:'World Health Organization',co:'INT',ty:'intl',m:['WHO']},
+ {id:'wb',ab:'WB',name:'World Bank – Multi-Donor Trust Fund',co:'INT',ty:'intl',m:['World Bank']},
+ {id:'lbg',ab:'LBG',name:'The Louis Berger Group',co:'INT',ty:'consult',m:['Louis Berger']},
+ {id:'nha',ab:'NHA',name:'National Highway Authority, Sudan',co:'SDN',ty:'gov',m:['National Highway Authority']},
+ {id:'mpwh',ab:'MPWH',name:'Ministry of Public Works & Highways, Yemen',co:'YEM',ty:'gov',m:['Yemen']}];
+const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
+const badge=(e,cls='')=>el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},e.ab);
+const state={domain:null,country:'',q:'',ent:null};
 DOMAINS.forEach(d=>{
   $('#exp-grid').append(el('article',{className:'exp',id:'exp-'+d.id,'--c':dc(d.id)},
     el('div',{className:'exp-top'},el('h3',{},d.name),el('div',{className:'exp-count'},String(countOf(d.id)),el('small',{},'projects'))),
@@ -431,7 +486,7 @@ function drawTimeline(){
 drawTimeline();addEventListener('resize',()=>{clearTimeout(window.__t);window.__t=setTimeout(drawTimeline,120);});
 Object.keys(CN).forEach(k=>$('#tl-legend').append(el('span',{},el('i',{style:{background:CC[k]}}),CN[k])));
 $('#tl-legend').append(el('span',{},el('i',{style:{background:'var(--surface)',border:'1.5px solid var(--ink)',borderRadius:'50%'}}),'Milestone'));
-[...ROLES].reverse().forEach(r=>$('#roles').append(el('div',{className:'role-card','--c':CC[r.co]},el('span',{className:'yr'},r.txt.replace(' – ','\n– ')),el('b',{},r.r),el('span',{},r.o),el('span',{},r.place))));
+[...ROLES].reverse().forEach(r=>$('#roles').append(el('div',{className:'role-card','--c':CC[r.co]},el('span',{className:'yr'},r.txt.replace(' – ','\n– ')),el('b',{},r.r),el('span',{className:'org-line'},...entsOf(r.o).map(e=>badge(e,'sm')),r.o),el('span',{},r.place))));
 
 // Highlights
 HIGHLIGHTS.forEach(h=>$('#hl').append(el('div',{className:'hl','--c':dc(h.d)},el('b',{},h.t),h.fig?el('div',{className:'fig'},h.fig):null,el('p',{},h.p))));
@@ -451,14 +506,14 @@ sel.onchange=()=>{state.country=sel.value;renderGrid();};
 $('#f-q').oninput=e=>{state.q=e.target.value.trim().toLowerCase();renderGrid();};
 let shown=[];
 function renderGrid(){
-  shown=P.filter(p=>(!state.domain||p.d.includes(state.domain))&&(!state.country||p.co===state.country)&&(!state.q||(p.t+' '+p.c+' '+p.s+' '+(COUNTRY[p.co]||'')).toLowerCase().includes(state.q)));
+  shown=P.filter(p=>(!state.ent||entsOf(p.c+' '+p.t).some(e=>e.id===state.ent))&&(!state.domain||p.d.includes(state.domain))&&(!state.country||p.co===state.country)&&(!state.q||(p.t+' '+p.c+' '+p.s+' '+(COUNTRY[p.co]||'')).toLowerCase().includes(state.q)));
   $('#p-count').textContent=`${shown.length} of ${P.length} projects`;
   const g=$('#grid');g.replaceChildren();
   if(!shown.length){g.append(el('div',{className:'empty',style:{gridColumn:'1/-1'}},'No projects match these filters. Clear the search or choose another area.'));return;}
   shown.forEach((p,i)=>g.append(el('button',{className:'card',onclick:()=>openLB(i,0),'aria-label':`Open poster: ${p.t}`},
     el('div',{className:'thumb'},el('img',{src:img(p.p[0],'t'),alt:'',loading:'lazy',width:560,height:433}),p.p.length>1?el('span',{className:'pages'},`${p.p.length} posters`):null),
     el('div',{className:'body'},el('h3',{},p.t),
-      el('div',{className:'meta'},p.co?el('b',{},p.co):null,p.c?el('span',{},p.c):null,p.y?el('span',{},p.y):null),
+      (()=>{const es=entsOf(p.c+' '+p.t);return es.length?el('div',{className:'ents'},...es.map(e=>badge(e,'sm'))):null})(),el('div',{className:'meta'},p.co?el('b',{},p.co):null,p.c?el('span',{},p.c):null,p.y?el('span',{},p.y):null),
       el('div',{className:'tags'},p.d.map(id=>el('span',{className:'tag','--c':dc(id)},dom(id).name)))))));
 }
 renderChips();renderGrid();
@@ -478,6 +533,16 @@ addEventListener('keydown',e=>{if($('#lb').hidden)return;if(e.key==='Escape')clo
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1400);};
   try{navigator.clipboard.writeText(v).then(done,()=>{selectText(b.parentElement);});}catch{selectText(b.parentElement);}}));
 function selectText(n){const r=document.createRange();r.selectNodeContents(n.firstChild?n:n);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+
+// Organisations
+const projCount=e=>P.filter(p=>entsOf(p.c+' '+p.t).some(x=>x.id===e.id)).length;
+function setEnt(id){state.ent=id;renderGrid();renderEntFilter();$('#projects').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+function renderEntFilter(){const old=document.getElementById('ent-filter');if(old)old.remove();if(!state.ent)return;const e=ENTS.find(x=>x.id===state.ent);
+  $('#p-count').before(el('button',{className:'ent-filter',id:'ent-filter',onclick:()=>{state.ent=null;renderGrid();renderEntFilter();},'aria-label':'Clear organisation filter'},badge(e,'sm'),e.name,' ✕'));}
+const ROLE_YEARS={};ROLES.forEach(r=>entsOf(r.o).forEach(e=>ROLE_YEARS[e.id]=r.txt));
+for(const e of ENTS){const n=projCount(e);
+  $(e.emp?'#org-emp':'#org-cli').append(el('button',{className:'org',disabled:!n,style:n?{}:{cursor:'default'},onclick:()=>n&&setEnt(e.id),'aria-label':`${e.name}: show ${n} projects`},
+    badge(e,'lg'),el('b',{},e.name),el('span',{className:'m'},`${COUNTRY[e.co]||(e.co==='USA'?'USA':'International')} · ${e.emp&&ROLE_YEARS[e.id]?ROLE_YEARS[e.id]:ENT_TYPE[e.ty]} · ${n?n+' project'+(n===1?'':'s'):'see CV'}`)));}
 </script>
 
 </body>
