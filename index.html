@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Aymen A. Makki Ismail — Senior Transportation Engineer and Road Safety Expert: areas of expertise, career and featured projects.">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}@media (max-width:700px){.org{grid-template-columns:minmax(0,1fr)}.org .logo,.org .ent{grid-row:auto}.logo.lg{width:100%;height:120px}.ent.lg.ic{min-width:100%;height:120px}.org b{font-size:19px}}
+</style>
 <title>Aymen Makki Ismail</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -105,10 +106,12 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 .roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:10px;margin-top:14px}
 .ent{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;min-width:30px;height:30px;padding:0 4px;border-radius:8px;background:var(--ec);color:#fff;font:700 11px/1 var(--f-display);letter-spacing:.02em;border:2px solid var(--ec)}
 .ent.consult{background:var(--surface);color:var(--ec)}
-.ent.lg.ic{flex-direction:column;gap:1px;font-size:8.5px;letter-spacing:.04em;min-width:52px;height:52px}
+.ent.lg.ic{flex-direction:column;gap:4px;font-size:13px;letter-spacing:.04em;min-width:220px;height:130px;border-radius:12px}
+.ent.lg.ic svg{width:48px;height:48px}
 .logo{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .logo img{display:block;max-width:100%;max-height:100%;object-fit:contain}
-.logo.lg{width:96px;height:60px;padding:5px}
+.logo.lg{width:220px;height:130px;padding:12px;border-radius:12px}
+
 .logo.sm{height:30px;width:66px;padding:2px 4px;border-radius:5px}
 .logo.dark{border-color:transparent}
 .org .logo{grid-row:span 2}
@@ -121,13 +124,14 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 .org-line .ent{margin-top:1px}
 .role-card .ent{color:#fff;font-size:9.5px}
 .role-card .ent.consult{color:var(--ec)}
-.orgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,265px),1fr));gap:10px}
-.org{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:3px 11px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;min-width:0}
+.orgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.orgs{grid-template-columns:minmax(0,1fr)}}
+.org{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:4px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
 .org:hover{border-color:var(--ink)}
 .org:focus-visible{outline:2px solid var(--marking);outline-offset:2px}
 .org .ent{grid-row:span 2}
-.org b{font:600 16px/1.15 var(--f-display)}
-.org span.m{font-size:12.5px;color:var(--muted)}
+.org b{font:600 21px/1.15 var(--f-display);align-self:end}
+.org span.m{font-size:14px;color:var(--muted);align-self:start}
 .org-group{display:flex;flex-direction:column;gap:8px}
 .org-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);align-items:center}
 .org-legend .ent{min-width:18px;width:18px;height:18px;padding:0;font-size:0;--ec:var(--muted);vertical-align:-4px}
