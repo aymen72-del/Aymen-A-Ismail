@@ -461,7 +461,7 @@ const ICON={
  beam:'<path d="M3 6h18M3 9h18M12 9v8M6 20h12M8 17h8"/>',
  bridge:'<path d="M2 16h20M4 16v5M20 16v5M4 16c3-7 13-7 16 0M9 12v4M15 12v4M12 11v5"/>'};
 const ENT_ICON={dah:'plan',pwa:'cone',arc:'ruler',ncg:'network',ecs:'hardhat',bi:'beam',rrm:'city',rcrc:'civic',loc:'trophy',sa:'energy',mep:'town',rcjy:'industry',sbg:'crane',ntsc:'shield',who:'health',wb:'globe',lbg:'compass',nha:'road',mpwh:'bridge'};
-const LOGO={dah:1,rcrc:1,rrm:1,loc:'#0d262d',sa:1,who:1,wb:1,pwa:1,rcjy:1,mep:1,lbg:1,nha:1,ncg:'#05003b',ntsc:1,mpwh:1};
+const LOGO={dah:1,rcrc:1,rrm:1,loc:'#0d262d',sa:1,who:1,wb:1,pwa:1,rcjy:1,mep:1,lbg:1,nha:1,ncg:'#05003b',ntsc:1,mpwh:1,ecs:1,bi:1,sbg:1,arc:1};
 const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
 const badge=(e,cls='')=>{if(LOGO[e.id]){const size=cls.includes('lg')?'lg':'sm';const bgc=typeof LOGO[e.id]==='string'?LOGO[e.id]:null;return el('span',{className:`logo ${size}${bgc?' dark':''}`,style:bgc?{background:bgc}:{},title:e.name},el('img',{src:`img/logo-${e.id}.png`,alt:e.name,loading:'lazy'}));}const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
