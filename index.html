@@ -288,7 +288,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
       <div class="eyebrow">Where the work was done</div>
       <h3 style="margin:4px 0 12px">Projects by area of expertise and country</h3>
       <div class="scroll-x"><table class="matrix" id="matrix"></table></div>
-      <p class="note">Counts of featured projects; a project tagged with two areas counts in both rows. Road Safety Engineering counts all safety assessments, audits and investigations (59 in Qatar, 37 in Saudi Arabia); Crash Investigation &amp; Reconstruction counts all on-site investigation locations in Qatar: 17 for Ashghal and 26+ with the NTSO on-site investigation team.</p>
+      <p class="note">Counts of featured projects; a project tagged with two areas counts in both rows. Road Safety Engineering counts all safety assessments, audits and investigations (59 in Qatar, 37 in Saudi Arabia); Crash Investigation &amp; Reconstruction counts all on-site investigation locations in Qatar (17 for Ashghal, 26+ with the NTSO team); Traffic Engineering includes 100+ intersection operation studies in Saudi Arabia.</p>
     </div>
     <div class="panel" id="bars-panel">
       <div class="eyebrow">Depth by area</div>
@@ -375,7 +375,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   <section class="three" aria-label="Committees, tools and training">
     <div class="panel" id="committees">
       <div class="eyebrow">National programmes &amp; committees</div>
-      <h3 style="margin:4px 0 12px">Qatar national road safety</h3>
+      <h3 style="margin:4px 0 12px">Qatar national road safety · 11+ workshops &amp; working groups</h3>
       <ul class="list" id="committee-list"></ul>
     </div>
     <div class="panel" id="tools">
@@ -408,10 +408,10 @@ const DOMAINS=[
  {id:'safety',name:'Road Safety Engineering',desc:'Audits, inspections and countermeasures that make roads forgiving for every user.',skills:['Road safety audits & inspections (observer for the public works authority)','Safety of road geometry & roadside features','Pedestrian & vulnerable road user safety','Safety improvement & mitigation measures']},
  {id:'crash',name:'Crash Data & Analytics',desc:'Turning crash records into ranked locations, trends and investment cases.',skills:['National crash data systems (Q‑CAS, iMAAP)','Blackspot identification & treatment','GLM / regression & before-and-after studies','GIS spatiotemporal analysis & machine learning']},
  {id:'invest',name:'Crash Investigation & Reconstruction',desc:'On-site and forensic analysis to find root causes and systemic risk.',skills:['On-site investigation of 43+ crash locations: 17 for Ashghal, 26+ with the NTSO on-site team','Post-crash investigation (TRL Levels I & II)','Collision reconstruction (PC‑Crash, PhotoModeler)','Contributing factor analysis','Countermeasures from investigation findings']},
- {id:'traffic',name:'Traffic Engineering',desc:'Impact studies, intersection design and capacity for urban and industrial networks.',skills:['Traffic Impact Studies (TIS) & guidelines','Capacity & level-of-service analysis (Synchro, SIDRA, HCS)','Intersection & signage design','Pavement markings & traffic control devices']},
+ {id:'traffic',name:'Traffic Engineering',desc:'Impact studies, intersection design and capacity for urban and industrial networks.',skills:['100+ studies to improve traffic operation at intersections, Saudi Arabia','Traffic Impact Studies (TIS) & guidelines','Capacity & level-of-service analysis (Synchro, SIDRA, HCS)','Intersection & signage design','Pavement markings & traffic control devices']},
  {id:'planning',name:'Transport Planning & Modelling',desc:'Master plans, demand models and surveys that shape long-term networks.',skills:['Travel demand modelling (VISUM, TransCAD)','Microsimulation (VISSIM)','National O‑D & traffic count programmes','Event mobility & stadium accessibility']},
  {id:'workzone',name:'Work Zones & Traffic Management',desc:'Keeping traffic moving and workers safe through construction.',skills:['Traffic diversion plan (TDP) review','Work zone traffic management guidelines (WZTMG)','Traffic management plans','Work zone crash analysis']},
- {id:'strategy',name:'Strategy, Policy & Programme Management',desc:'National action plans, multi-agency coordination and programme delivery.',skills:['National Road Safety Action Plans 2018–2022, 2023–2030','Led 20+ action coordinators; NTSC liaison','WHO reporting & international benchmarking','Project management of multi-year consultancies']},
+ {id:'strategy',name:'Strategy, Policy & Programme Management',desc:'National action plans, multi-agency coordination and programme delivery.',skills:['National Road Safety Action Plans 2018–2022, 2023–2030','Led 20+ action coordinators; Ashghal coordinator with the NTSO','Lead coordinator documenting Qatar\'s road safety efforts; WHO reporting','11+ workshops & working groups: cyclist and e-scooter safety, action plans, FIFA 2022','Project management of multi-year consultancies']},
  {id:'events',name:'Mega-Event Mobility & Readiness',desc:'Getting crowds to stadiums safely, from FIFA 2022 in Qatar to Riyadh\'s Asian Cup and World Cup.',skills:['FIFA World Cup 2022 road safety operations (Qatar)','AFC Asian Cup 2027 host-city readiness, Riyadh','1 km stadium impact zones & priority street scoring','Spectator last-mile audits & crowd arrival planning']},
  {id:'data',name:'Data Science, Machine Learning & AI',desc:'Models and AI tools that turn crash records, road geometry and satellite imagery into decisions.',skills:['Satellite-image risk screening: conflict points, risk matrix, CRF-based mitigation','Hazardous segment detection from lane width, curvature, superelevation, sight distance','Crash severity, frequency & blackspot models; RapidMiner cut weeks to days','Traffic flow & incident prediction (Qatar ITM), HCM analysis, predictive maintenance','Random Forest, GBDT, XGBoost, LightGBM, ANN, CNN, LSTM, SVM, k-NN, k-Means, ANFIS']},
  {id:'infra',name:'Infrastructure Development & Appraisal',desc:'Donor-funded road programmes and the economics behind them.',skills:['World Bank multi-donor trust fund projects','Rural access & feeder road programmes','Economic appraisal & life-cycle cost (HDM‑4)','Corridor upgrade studies']}
@@ -483,7 +483,9 @@ const HIGHLIGHTS=[
  {d:'strategy',t:'National Road Safety Action Plans',fig:'2018–2022 · 2023–2030',p:'Ashghal coordinator for the plans, leading 20+ action coordinators and acting as main liaison with the National Traffic Safety Committee.'},
  {d:'events',t:'FIFA World Cup 2022 operations',p:'Supported safe, efficient transport during the tournament through the FIFA 2022 Road Safety Working Group.'},
  {d:'data',t:'Predictive safety modelling',fig:'Weeks → days',p:'Built RapidMiner workflows for thousands of ambulance and crash records, predicting crash severity and collision types.'},
- {d:'strategy',t:'WHO road safety collaboration',p:'Represented Ashghal in WHO reporting and benchmarking of Qatar\'s road safety performance.'},
+ {d:'strategy',t:'Documenting Qatar\'s road safety efforts',fig:'Lead coordinator',p:'Lead coordinator for Ashghal in documenting Qatar\'s road safety efforts, and Ashghal\'s coordinator with the NTSO; represented Ashghal in WHO reporting and benchmarking.'},
+ {d:'strategy',t:'Workshops & working groups',fig:'11+',p:'Took part in more than 11 workshops and working groups, covering cyclist safety, e-scooter safety, the National Road Safety Action Plan and the FIFA 2022 Road Safety Working Group.'},
+ {d:'traffic',t:'Intersection operation studies',fig:'100+ studies · Saudi Arabia',p:'More than 100 studies to improve traffic operation at intersections, all conducted in Saudi Arabia.'},
  {d:'traffic',t:'TIS Guidelines, Eastern Province',fig:'40%+ faster reviews',p:'Developed the Traffic Impact Study guidelines adopted by the Municipality, improving consistency in planning reviews.'},
  {d:'invest',t:'Road safety audit & investigation',fig:'59 records · 2020–2024',p:'Observer on third-party Stage 6 audits for the public works authority (government engineers cannot hold auditor certificates); led 41 safety assessments and 15 collision investigations.'},
  {d:'safety',t:'Riyadh network safety',p:'Leads safety audits, blackspot and corridor prioritisation, and TDP reviews with Riyadh Amanah and the Royal Commission for Riyadh City.'},
@@ -495,7 +497,7 @@ const HIGHLIGHTS=[
  {d:'infra',t:'World Bank infrastructure programmes',fig:'11+ projects · 2,700+ km',p:'Senior traffic engineer and project manager on multi-donor trust fund roads across Kassala, South Kordofan, Blue Nile and Darfur.'}
 ];
 const COMMITTEES=[
- ['National Road Safety Strategy','Working group member'],['National Road Safety Action Plans','2018–2022 and 2023–2030'],['FIFA 2022 Road Safety Working Group','Safe mobility for a global event'],['National Crash Database Working Group','Crash data integration'],['Work Zone Traffic Management Guidelines','Review committee'],['Traffic Accident Investigation Working Group','Investigation frameworks']
+ ['National Road Safety Strategy','Working group member'],['National Road Safety Action Plans','2018–2022 and 2023–2030'],['FIFA 2022 Road Safety Working Group','Safe mobility for a global event'],['National Crash Database Working Group','Crash data integration'],['Work Zone Traffic Management Guidelines','Review committee'],['Traffic Accident Investigation Working Group','Investigation frameworks'],['Cyclist safety','Workshops & working group'],['E-scooter safety','Workshops & working group']
 ];
 const TOOLS=[['Traffic simulation & analysis',['VISSIM','VISUM','TransCAD','Synchro','SIDRA','HCS']],['Road safety & crash analysis',['iMAAP','iRAP','PC‑Crash','PhotoModeler']],['Data, ML & AI',['RapidMiner','Orange','Power BI','Claude AI']],['Machine learning algorithms',['Random Forest','GBDT','XGBoost','LightGBM','ANN','CNN','LSTM','SVM','k-NN','k-Means','ANFIS']],['GIS, design & assets',['ArcGIS','AutoCAD','MicroStation','Asset management systems']]];
 const CERTS=[['2017','Post-Crash Investigation, Levels I & II','TRL'],['2015','Work Zone Traffic Analysis & Safety','NHI'],['2015','Safe Use of Law Enforcement in Work Zones','NHI'],['2015','Roadside Design Guide','NHI'],['2015','Transportation Asset Management & Freight Planning','NHI'],['2014–15','Traffic Simulation & Modelling (VISUM / VISSIM)','PTV'],['2013','Highway Safety Manual (HSM)','Saudi Aramco Chair for Safety'],['2011','ISO 9001 Quality Management Systems','Intl. Center for Quality Management'],['2009–10','Project Management & Marketing','Sudanese Dutch Management Center']];
@@ -560,7 +562,7 @@ const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
 const badge=(e,cls='')=>{if(LOGO[e.id]){const size=cls.includes('lg')?'lg':'sm';const bgc=typeof LOGO[e.id]==='string'?LOGO[e.id]:null;return el('span',{className:`logo ${size}${bgc?' dark':''}`,style:bgc?{background:bgc}:{},title:e.name},el('img',{src:`img/logo-${e.id}.png`,alt:e.name,loading:'lazy'}));}const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
 // Full work counts that go beyond the featured projects (all road safety engineering records, by country)
-const WORK={safety:{KSA:37,QAT:59,SDN:1},invest:{QAT:43}};
+const WORK={safety:{KSA:37,QAT:59,SDN:1},invest:{QAT:43},traffic:{KSA:100,QAT:2}};
 const cellOf=(id,c)=>WORK[id]?(WORK[id][c]||0):P.filter(p=>p.co===c&&p.d.includes(id)).length;
 const totalOf=id=>WORK[id]?Object.values(WORK[id]).reduce((a,b)=>a+b,0):countOf(id);
 const state={domain:null,country:'',q:'',ent:null};
