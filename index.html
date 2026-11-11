@@ -288,7 +288,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
       <div class="eyebrow">Where the work was done</div>
       <h3 style="margin:4px 0 12px">Projects by area of expertise and country</h3>
       <div class="scroll-x"><table class="matrix" id="matrix"></table></div>
-      <p class="note">Counts of featured projects; a project tagged with two areas counts in both rows. Road Safety Engineering counts all safety assessments, audits and investigations: 59 in Qatar and 37 in Saudi Arabia.</p>
+      <p class="note">Counts of featured projects; a project tagged with two areas counts in both rows. Road Safety Engineering counts all safety assessments, audits and investigations (59 in Qatar, 37 in Saudi Arabia); Crash Investigation &amp; Reconstruction counts all on-site investigation locations in Qatar: 17 for Ashghal and 26+ with the NTSO on-site investigation team.</p>
     </div>
     <div class="panel" id="bars-panel">
       <div class="eyebrow">Depth by area</div>
@@ -407,7 +407,7 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
 const DOMAINS=[
  {id:'safety',name:'Road Safety Engineering',desc:'Audits, inspections and countermeasures that make roads forgiving for every user.',skills:['Road safety audits & inspections (observer for the public works authority)','Safety of road geometry & roadside features','Pedestrian & vulnerable road user safety','Safety improvement & mitigation measures']},
  {id:'crash',name:'Crash Data & Analytics',desc:'Turning crash records into ranked locations, trends and investment cases.',skills:['National crash data systems (Q‑CAS, iMAAP)','Blackspot identification & treatment','GLM / regression & before-and-after studies','GIS spatiotemporal analysis & machine learning']},
- {id:'invest',name:'Crash Investigation & Reconstruction',desc:'On-site and forensic analysis to find root causes and systemic risk.',skills:['Post-crash investigation (TRL Levels I & II)','Collision reconstruction (PC‑Crash, PhotoModeler)','Contributing factor analysis','Countermeasures from investigation findings']},
+ {id:'invest',name:'Crash Investigation & Reconstruction',desc:'On-site and forensic analysis to find root causes and systemic risk.',skills:['On-site investigation of 43+ crash locations: 17 for Ashghal, 26+ with the NTSO on-site team','Post-crash investigation (TRL Levels I & II)','Collision reconstruction (PC‑Crash, PhotoModeler)','Contributing factor analysis','Countermeasures from investigation findings']},
  {id:'traffic',name:'Traffic Engineering',desc:'Impact studies, intersection design and capacity for urban and industrial networks.',skills:['Traffic Impact Studies (TIS) & guidelines','Capacity & level-of-service analysis (Synchro, SIDRA, HCS)','Intersection & signage design','Pavement markings & traffic control devices']},
  {id:'planning',name:'Transport Planning & Modelling',desc:'Master plans, demand models and surveys that shape long-term networks.',skills:['Travel demand modelling (VISUM, TransCAD)','Microsimulation (VISSIM)','National O‑D & traffic count programmes','Event mobility & stadium accessibility']},
  {id:'workzone',name:'Work Zones & Traffic Management',desc:'Keeping traffic moving and workers safe through construction.',skills:['Traffic diversion plan (TDP) review','Work zone traffic management guidelines (WZTMG)','Traffic management plans','Work zone crash analysis']},
@@ -560,7 +560,7 @@ const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
 const badge=(e,cls='')=>{if(LOGO[e.id]){const size=cls.includes('lg')?'lg':'sm';const bgc=typeof LOGO[e.id]==='string'?LOGO[e.id]:null;return el('span',{className:`logo ${size}${bgc?' dark':''}`,style:bgc?{background:bgc}:{},title:e.name},el('img',{src:`img/logo-${e.id}.png`,alt:e.name,loading:'lazy'}));}const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
 // Full work counts that go beyond the featured projects (all road safety engineering records, by country)
-const WORK={safety:{KSA:37,QAT:59,SDN:1}};
+const WORK={safety:{KSA:37,QAT:59,SDN:1},invest:{QAT:43}};
 const cellOf=(id,c)=>WORK[id]?(WORK[id][c]||0):P.filter(p=>p.co===c&&p.d.includes(id)).length;
 const totalOf=id=>WORK[id]?Object.values(WORK[id]).reduce((a,b)=>a+b,0):countOf(id);
 const state={domain:null,country:'',q:'',ent:null};
