@@ -136,7 +136,8 @@ table.matrix{border-collapse:separate;border-spacing:3px;width:100%;font-size:13
 .org-legend .ent{min-width:18px;width:18px;height:18px;padding:0;font-size:0;--ec:var(--muted);vertical-align:-4px}
 .ent-filter{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);border-radius:99px;padding:3px 10px 3px 4px;font-size:13px;background:var(--surface);cursor:pointer}
 .card .ents{display:flex;gap:4px}
-.rsa-nums{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.rsa-nums{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+@media (max-width:1180px){.rsa-nums{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:900px){.rsa-nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .rsa-num{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:4px}
 .rsa-num b{font:700 52px/1 var(--f-display);color:var(--c);font-variant-numeric:tabular-nums}
@@ -316,12 +317,13 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   </section>
 
   <section id="audits">
-    <div class="sec-head"><div><div class="eyebrow">Road safety audit record · 2020–2024</div><h2>59 audits, assessments and investigations</h2></div><p>Record from Qatar's public works authority, Feb 2020 to Nov 2024. Select a row to read what was examined.</p></div>
+    <div class="sec-head"><div><div class="eyebrow">Road safety audit &amp; investigation record · Qatar · 2020–2024</div><h2>59 audits, assessments and investigations</h2></div><p>Record from Qatar's public works authority, Feb 2020 to Nov 2024, plus 26+ crash locations investigated with the NTSO on-site team. Select a row to read what was examined.</p></div>
     <div class="rsa-nums">
       <div class="rsa-num" style="--c:var(--ink)"><b>59</b><span>Total records</span><small>2020 – 2024</small></div>
       <div class="rsa-num" style="--c:var(--d-strategy)"><b>3</b><span>Road safety audits &amp; inspections</span><small>Stage 6 · observer</small></div>
       <div class="rsa-num" style="--c:var(--d-safety)"><b>41</b><span>Safety engineering assessments</span><small>led · 13 since Feb 2024</small></div>
-      <div class="rsa-num" style="--c:var(--d-invest)"><b>15</b><span>Collision investigations</span><small>led</small></div>
+      <div class="rsa-num" style="--c:var(--d-invest)"><b>17</b><span>Crash locations investigated</span><small>led · Ashghal · 15 investigations</small></div>
+      <div class="rsa-num" style="--c:var(--d-invest)"><b>26+</b><span>Crash locations, NTSO team</span><small>on-site investigation team member</small></div>
       <div class="rsa-num" style="--c:var(--d-invest)"><b>4</b><span>Fatal collisions investigated</span><small>on-site and reconstruction</small></div>
     </div>
     <div class="rsa-grid">
