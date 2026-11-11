@@ -288,11 +288,11 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
       <div class="eyebrow">Where the work was done</div>
       <h3 style="margin:4px 0 12px">Projects by area of expertise and country</h3>
       <div class="scroll-x"><table class="matrix" id="matrix"></table></div>
-      <p class="note">Counts of featured projects. A project tagged with two areas counts in both rows.</p>
+      <p class="note">Counts of featured projects; a project tagged with two areas counts in both rows. Road Safety Engineering counts all safety assessments, audits and investigations: 59 in Qatar and 37 in Saudi Arabia.</p>
     </div>
     <div class="panel" id="bars-panel">
       <div class="eyebrow">Depth by area</div>
-      <h3 style="margin:4px 0 12px">Featured projects per area</h3>
+      <h3 style="margin:4px 0 12px">Projects per area</h3>
       <div class="bars" id="bars"></div>
     </div>
   </section>
@@ -559,10 +559,14 @@ const LOGO={dah:1,rcrc:1,rrm:1,loc:'#0d262d',sa:1,who:1,wb:1,pwa:1,rcjy:1,mep:1,
 const entsOf=str=>ENTS.filter(e=>e.m.some(k=>(str||'').includes(k)));
 const badge=(e,cls='')=>{if(LOGO[e.id]){const size=cls.includes('lg')?'lg':'sm';const bgc=typeof LOGO[e.id]==='string'?LOGO[e.id]:null;return el('span',{className:`logo ${size}${bgc?' dark':''}`,style:bgc?{background:bgc}:{},title:e.name},el('img',{src:`img/logo-${e.id}.png`,alt:e.name,loading:'lazy'}));}const ic=cls.includes('lg')&&ENT_ICON[e.id];const b=el('span',{className:`ent ${e.ty==='gov'?'':e.ty} ${cls}${ic?' ic':''}`,'--ec':ENT_COL[e.co],title:e.name,'aria-label':e.name},ic?'':e.ab);
  if(ic){b.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[ic]}</svg>`);b.append(el('span',{},e.ab));}return b;};
+// Full work counts that go beyond the featured projects (all road safety engineering records, by country)
+const WORK={safety:{KSA:37,QAT:59,SDN:1}};
+const cellOf=(id,c)=>WORK[id]?(WORK[id][c]||0):P.filter(p=>p.co===c&&p.d.includes(id)).length;
+const totalOf=id=>WORK[id]?Object.values(WORK[id]).reduce((a,b)=>a+b,0):countOf(id);
 const state={domain:null,country:'',q:'',ent:null};
 DOMAINS.forEach(d=>{
   $('#exp-grid').append(el('article',{className:'exp',id:'exp-'+d.id,'--c':dc(d.id)},
-    el('div',{className:'exp-top'},el('h3',{},d.name),el('div',{className:'exp-count'},String(countOf(d.id)),el('small',{},'projects'))),
+    el('div',{className:'exp-top'},el('h3',{},d.name),el('div',{className:'exp-count'},String(totalOf(d.id)),el('small',{},'projects'))),
     el('p',{},d.desc),
     el('ul',{},d.skills.map(s=>el('li',{},s))),
     el('button',{className:'exp-btn',onclick:()=>{setDomain(d.id);$('#projects').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}},'View projects')));
@@ -571,16 +575,16 @@ DOMAINS.forEach(d=>{
 // Matrix: domains × countries
 const order=['KSA','QAT','SDN','YEM'];
 const mx=$('#matrix');
-const maxCell=Math.max(...DOMAINS.flatMap(d=>order.map(c=>P.filter(p=>p.co===c&&p.d.includes(d.id)).length)));
+const maxCell=Math.max(...DOMAINS.flatMap(d=>order.map(c=>cellOf(d.id,c))));
 mx.append(el('thead',{},el('tr',{},el('th',{},''),order.map(c=>el('th',{scope:'col'},COUNTRY[c])),el('th',{scope:'col'},'All'))));
 mx.append(el('tbody',{},DOMAINS.map(d=>el('tr',{},el('th',{scope:'row'},el('span',{className:'dot','--c':dc(d.id)}),d.name),
-  order.map(c=>{const n=P.filter(p=>p.co===c&&p.d.includes(d.id)).length;return el('td',{className:n?'':'z',style:n?{background:`color-mix(in srgb, ${dc(d.id)} ${Math.round(14+66*n/maxCell)}%, transparent)`}:{},title:`${d.name} · ${COUNTRY[c]}: ${n}`},n?String(n):'·');}),
-  el('td',{},String(countOf(d.id)))))));
+  order.map(c=>{const n=cellOf(d.id,c);return el('td',{className:n?'':'z',style:n?{background:`color-mix(in srgb, ${dc(d.id)} ${Math.round(14+66*n/maxCell)}%, transparent)`}:{},title:`${d.name} · ${COUNTRY[c]}: ${n}`},n?String(n):'·');}),
+  el('td',{},String(totalOf(d.id)))))));
 
 // Bars
-const maxD=Math.max(...DOMAINS.map(d=>countOf(d.id)));
-[...DOMAINS].sort((a,b)=>countOf(b.id)-countOf(a.id)).forEach(d=>{
-  $('#bars').append(el('div',{className:'bar','--c':dc(d.id),title:`${d.name}: ${countOf(d.id)} projects`},el('span',{className:'lab'},d.name),el('span',{className:'t'},el('i',{style:{width:(100*countOf(d.id)/maxD)+'%'}})),el('b',{},String(countOf(d.id)))));
+const maxD=Math.max(...DOMAINS.map(d=>totalOf(d.id)));
+[...DOMAINS].sort((a,b)=>totalOf(b.id)-totalOf(a.id)).forEach(d=>{
+  $('#bars').append(el('div',{className:'bar','--c':dc(d.id),title:`${d.name}: ${totalOf(d.id)} projects`},el('span',{className:'lab'},d.name),el('span',{className:'t'},el('i',{style:{width:(100*totalOf(d.id)/maxD)+'%'}})),el('b',{},String(totalOf(d.id)))));
 });
 
 // Timeline (SVG chainage)
